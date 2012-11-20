@@ -1,0 +1,104 @@
+<head>
+  <title>Sogon2x</title>
+</head>
+
+<body>
+  {{> head}}
+  {{renderPage}}
+</body>
+
+<template name="head">
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+
+        <!-- Be sure to leave the brand out there if you want it shown -->
+        <a class="brand" href="/">Sogon2X
+        </a>
+
+        <!-- Everything you want hidden at 940px or less, place within here -->
+        <div class="nav-collapse collapse">
+          <!-- .nav, .navbar-search, .navbar-form, etc -->
+          <ul class="nav">
+            <li class="active">
+              <a href="/">Home</a>
+            </li>
+          </ul>
+          <ul class="nav">
+            <li class="active">
+              <a href="#">{{loginButtons}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+<template name="main">
+  <div class="container">
+    <h2>{{pageTitle}}'s page
+      {{#if currentUser}}
+      {{#unless isSubscribe currentUser.profile.subscribers}}
+      <button class="btn btn-primary subscribe">
+        Subscribe
+      </button>
+      {{else}}
+      <button class="btn btn-inverse unsubscribe">
+        Unsubscribe
+      </button>
+      {{/unless}}
+      {{/if}}</h2>
+    <ul class="unstyled">
+      {{#if currentUser}}
+      <li class="row">
+        <form class="form-inline" action=""><textarea class="postText input-block-level" placeholder="shift+enter to post.."></textarea>
+          <button class="btn btn-basic pull-right" type="reset"><i class="icon-trash"></i></button>
+          <button class="btn btn-success pull-right" type="submit"><i class="icon-white icon-pencil">
+          </i></button>
+        </form>
+      </li>
+      {{/if}}
+      {{> post}}
+    </ul>
+  </div>
+
+</template>
+
+<template name="title">
+  <div class="container hero-unit">
+    <h1>Hello Sogon!</h1>
+    <p>
+      Simple and Robust SNS
+    </p>
+    <button class="btn btn-info pull-right">Read More..</button>
+  </div>
+</template>
+
+<template name="mypage">
+  <div class="container">
+    <ul class="unstyled">
+      <li>
+        <h2>My page</h2>
+      </li>
+      {{> posts}}
+    </ul>
+  </div>
+</template>
+
+<template name="posts">
+  {{#each posts}}
+  <li class="row post">
+    <div class="postHead"><span class="label author">{{author.profile.name}}</span><span
+      class="badge badge-info timeAgo pull-right">{{timeago created_at}}</span></div>
+    <div class="postBody">
+      <pre>{{{text}}}<a href="/page/{{page}}"><span class="pull-right label label-important tags">{{page}}</span></a></pre>
+    </div>
+  </li>
+  {{/each}}
+</template>

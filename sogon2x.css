@@ -1,0 +1,17 @@
+/* CSS declarations go here */
+.form-inline button {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+form {
+  margin-bottom: 50px;
+}
+/* fixed top Scroll */
+body {
+  padding-top: 60px;
+}
+@media (max-width: 979px) {
+  body {
+    padding-top: 0;
+  }
+}
