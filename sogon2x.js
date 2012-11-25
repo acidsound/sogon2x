@@ -36,8 +36,8 @@ if (Meteor.isClient) {
       Session.set('page', '');
       return 'title';
     },
-    '/page/:page':function(args) {
-      Session.set('page', args[0]);
+    '/page/:page':function(page) {
+      Session.set('page', page);
       return 'main';
     },
     '/mypage':function() {
