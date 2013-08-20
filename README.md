@@ -10,3 +10,6 @@ install meteorite
 
 npm install -g meteorite
 
+How to run
+===========
+mrt
